@@ -1,0 +1,1400 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Regulamin Vortex RP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Układ: przypięty spis treści po lewej, jedna kolumna tekstu; limity akcji jako tablica wyników Crime vs Sheriff */
+:root {
+  --bg: #eceee6;
+  --surface: #f8f9f4;
+  --fg: #1a211c;
+  --muted: #58625a;
+  --line: #d0d5c9;
+  --brass: #855809;
+  --brass-soft: #efe1c2;
+  --pine: #2b5a45;
+  --crime: #a23327;
+  --crime-soft: #f3dad5;
+  --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "Barlow", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121713;
+    --surface: #1a201b;
+    --fg: #e3e7de;
+    --muted: #9ba59c;
+    --line: #2d3630;
+    --brass: #dcab4f;
+    --brass-soft: #372c15;
+    --pine: #82bb9d;
+    --crime: #ee8072;
+    --crime-soft: #3c1e1a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121713;
+  --surface: #1a201b;
+  --fg: #e3e7de;
+  --muted: #9ba59c;
+  --line: #2d3630;
+  --brass: #dcab4f;
+  --brass-soft: #372c15;
+  --pine: #82bb9d;
+  --crime: #ee8072;
+  --crime-soft: #3c1e1a;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 1.25rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--pine); text-underline-offset: .18em; }
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; border-radius: 2px; }
+strong { font-weight: 700; }
+code {
+  font-family: var(--font-mono);
+  font-size: .86em;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: .05em .35em;
+}
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 40px);
+  padding-block: 0 4rem;
+}
+
+/* ---------- Nagłówek ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 2rem 3rem;
+  align-items: end;
+  padding-block: clamp(2rem, 6vw, 4.5rem) 2.25rem;
+  border-bottom: 2px solid var(--fg);
+}
+.eyebrow {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--pine);
+}
+h1 {
+  margin: .35rem 0 .2rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3.75rem, 12vw, 8rem);
+  line-height: .86;
+  letter-spacing: .005em;
+  text-transform: uppercase;
+}
+h1 .rp { color: var(--brass); }
+.subtitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem 1.25rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  color: var(--muted);
+}
+
+.area {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1.1rem 1.25rem 1rem;
+}
+.area-label {
+  margin: 0 0 .7rem;
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.area ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
+.area li { display: grid; grid-template-columns: .8rem minmax(0, 1fr); gap: .7rem; align-items: start; }
+.area li strong { display: block; font-family: var(--font-display); font-size: 1.35rem; line-height: 1.1; letter-spacing: .02em; text-transform: uppercase; }
+.area li small { display: block; font-size: .85rem; color: var(--muted); }
+.area .dot { width: .8rem; height: .8rem; margin-top: .35rem; border-radius: 50%; background: var(--pine); }
+.area .out strong { text-decoration: line-through; text-decoration-thickness: 2px; color: var(--muted); }
+.area .out .dot { background: transparent; border: 2px solid var(--crime); }
+.area .out small { color: var(--crime); font-weight: 600; }
+.area-foot { margin: .9rem 0 0; padding-top: .75rem; border-top: 1px solid var(--line); font-size: .85rem; color: var(--muted); }
+
+/* ---------- Układ strony ---------- */
+.layout {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  gap: 3.5rem;
+  margin-top: 2.5rem;
+}
+.toc {
+  position: sticky;
+  top: calc(env(safe-area-inset-top, 0px) + 1.25rem);
+  align-self: start;
+  max-height: calc(100vh - 2.5rem);
+  overflow-y: auto;
+  padding-bottom: 1rem;
+}
+.toc-title {
+  margin: 0 0 .6rem;
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.toc ol, .toc-mobile ol { list-style: none; margin: 0; padding: 0; }
+.toc a, .toc-mobile a {
+  display: grid;
+  grid-template-columns: 1.9rem minmax(0, 1fr);
+  padding: .28rem .5rem .28rem .6rem;
+  border-left: 2px solid transparent;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .92rem;
+  line-height: 1.35;
+}
+.toc a span, .toc-mobile a span { font-family: var(--font-mono); font-size: .75rem; padding-top: .12rem; }
+.toc a:hover, .toc-mobile a:hover { color: var(--fg); }
+.toc a[aria-current="true"] { color: var(--fg); border-left-color: var(--brass); font-weight: 600; }
+.toc a.key, .toc-mobile a.key { color: var(--brass); font-weight: 600; }
+
+.toc-mobile { display: none; }
+
+.doc { min-width: 0; max-width: 48rem; }
+
+.intro {
+  font-size: 1.12rem;
+  padding-bottom: 2rem;
+}
+.intro p { margin: 0 0 .9rem; }
+.intro .sign { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; letter-spacing: .04em; text-transform: uppercase; }
+
+/* ---------- Sekcje ---------- */
+section { padding-block: 2.5rem; border-top: 1px solid var(--line); }
+.sec-head { margin-bottom: 1.25rem; }
+.sec-no {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: var(--brass);
+}
+h2 {
+  margin: .15rem 0 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+  line-height: 1;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.lead { font-size: 1.1rem; margin: 0 0 1.25rem; }
+h3 {
+  margin: 2rem 0 .6rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.15;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+h3 .n { font-family: var(--font-mono); font-size: .9rem; font-weight: 600; color: var(--brass); margin-right: .5rem; letter-spacing: 0; }
+
+.rule {
+  display: grid;
+  grid-template-columns: 3.4rem minmax(0, 1fr);
+  gap: .75rem;
+  margin: .85rem 0;
+}
+.rule > .no {
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--muted);
+  padding-top: .22rem;
+  font-variant-numeric: tabular-nums;
+}
+.rule > div > :first-child { margin-top: 0; }
+.rule > div > :last-child { margin-bottom: 0; }
+.rule p { margin: 0 0 .5rem; }
+
+ul.list { margin: .5rem 0 .75rem; padding-left: 1.15rem; }
+ul.list li { margin: .2rem 0; padding-left: .2rem; }
+ul.list li::marker { color: var(--brass); }
+
+.fail { padding-top: .25rem; }
+.fail + .fail { border-top: 1px dashed var(--line); margin-top: 1.5rem; }
+.fail h3 { margin-top: 1.25rem; }
+.fail p { margin: 0 0 .7rem; }
+.ex-label {
+  margin: .9rem 0 .2rem !important;
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+.chips a {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: .74rem;
+  color: var(--fg);
+  text-decoration: none;
+}
+.chips a:hover { border-color: var(--brass); color: var(--brass); }
+
+.note {
+  margin: 1.25rem 0;
+  padding: .9rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.note-label {
+  display: block;
+  margin-bottom: .25rem;
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.note p { margin: 0 0 .5rem; }
+.note p:last-child { margin-bottom: 0; }
+.note + .note { margin-top: .75rem; }
+.note.danger { background: var(--crime-soft); border-color: transparent; }
+.note.danger .note-label { color: var(--crime); }
+
+/* Słowniczek */
+.glossary { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: .55rem 1.5rem; margin: 0; }
+.glossary dt { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; letter-spacing: .02em; }
+.glossary dt small { display: block; font-family: var(--font-body); font-weight: 400; font-size: .78rem; color: var(--muted); letter-spacing: 0; }
+.glossary dd { margin: 0; padding-top: .1rem; }
+
+/* ---------- Limity akcji ---------- */
+.tiers-legend { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin: 0 0 .5rem; padding: 0; list-style: none; font-size: .95rem; }
+.tiers-legend b { font-family: var(--font-display); text-transform: uppercase; letter-spacing: .04em; font-size: 1.05rem; }
+
+.tier { margin-top: 2.25rem; }
+.tier-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: .25rem 1rem;
+  padding-bottom: .35rem;
+  border-bottom: 2px solid var(--fg);
+}
+.tier-head h3 { margin: 0; font-size: 1.6rem; }
+.tier-head span { font-family: var(--font-mono); font-size: .74rem; color: var(--muted); }
+
+.limit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "name score" "facts facts";
+  gap: .9rem 1.25rem;
+  padding-block: 1.15rem;
+  border-bottom: 1px solid var(--line);
+}
+.limit-name { grid-area: name; min-width: 0; }
+.limit-name h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1.12;
+  letter-spacing: .015em;
+  text-transform: uppercase;
+}
+.limit-name .where { display: block; margin-top: .3rem; font-size: .88rem; color: var(--muted); }
+.score { grid-area: score; display: flex; align-items: center; gap: .45rem; align-self: start; }
+.side {
+  min-width: 4.25rem;
+  padding: .35rem .55rem .45rem;
+  border-radius: 4px;
+  text-align: center;
+}
+.side .num {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2.6rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.side .lbl { display: block; font-family: var(--font-mono); font-size: .62rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+.side.crime { background: var(--crime-soft); color: var(--crime); }
+.side.sheriff { background: var(--brass-soft); color: var(--brass); }
+.vs { font-family: var(--font-mono); font-size: .72rem; color: var(--muted); }
+
+.facts {
+  grid-area: facts;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  gap: .55rem 1rem;
+  margin: 0;
+}
+.facts div { min-width: 0; }
+.facts dt { font-family: var(--font-mono); font-size: .64rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 0; font-weight: 600; font-size: .95rem; line-height: 1.35; font-variant-numeric: tabular-nums; }
+
+.limit.top .side .num { font-size: 3.2rem; }
+
+.weapons { display: grid; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); gap: .75rem 1.25rem; margin: 1rem 0 0; }
+.weapons div { min-width: 0; }
+.weapons dt { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; text-transform: uppercase; letter-spacing: .03em; }
+.weapons dd { margin: 0; color: var(--muted); font-size: .95rem; }
+
+/* ---------- Tabela kar ---------- */
+.table-wrap { overflow-x: auto; margin-top: 1rem; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); }
+table { width: 100%; min-width: 42rem; border-collapse: collapse; font-size: .92rem; line-height: 1.4; }
+th, td { padding: .6rem .8rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+th { font-family: var(--font-mono); font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+tbody tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 600; width: 34%; }
+td.perm { color: var(--crime); font-weight: 600; }
+td.none { color: var(--muted); }
+
+/* ---------- Stopka ---------- */
+.outro { padding-block: 2.5rem 0; border-top: 2px solid var(--fg); font-size: 1.1rem; }
+.outro p { margin: 0 0 .9rem; }
+.outro .sign { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; letter-spacing: .04em; text-transform: uppercase; }
+.back { font-family: var(--font-mono); font-size: .8rem; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 1.5rem; }
+  .toc { display: none; }
+  .toc-mobile {
+    display: block;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--surface);
+  }
+  .toc-mobile summary {
+    padding: .75rem 1rem;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .toc-mobile ol { padding: 0 .5rem .75rem; }
+}
+@media (max-width: 560px) {
+  body { font-size: 1rem; }
+  .rule { grid-template-columns: 2.9rem minmax(0, 1fr); gap: .5rem; }
+  .glossary { grid-template-columns: minmax(0, 1fr); gap: .15rem; }
+  .glossary dd { margin-bottom: .65rem; }
+  .side { min-width: 3.6rem; padding-inline: .4rem; }
+  .side .num { font-size: 2.2rem; }
+  .limit.top .side .num { font-size: 2.6rem; }
+  .limit-name h4 { font-size: 1.25rem; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero" id="top">
+  <div>
+    <p class="eyebrow">Hrabstwo Blaine · serwer RolePlay</p>
+    <h1>Vortex <span class="rp">RP</span></h1>
+    <p class="subtitle">Regulamin serwera</p>
+    <ul class="meta">
+      <li>Aktualizacja: 01.10.2026</li>
+      <li>19 rozdziałów</li>
+      <li>Obowiązuje na serwerze i na Discordzie</li>
+    </ul>
+  </div>
+  <aside class="area" aria-label="Obszar gry">
+    <p class="area-label">Obszar gry</p>
+    <ul>
+      <li><span class="dot"></span><span><strong>Sandy Shores</strong><small>komenda Sheriff, szpital, sklepy, Ammu-Nation</small></span></li>
+      <li><span class="dot"></span><span><strong>Paleto Bay</strong><small>komenda Sheriff, punkt medyczny, Paleto Bank</small></span></li>
+      <li class="out"><span class="dot"></span><span><strong>Los Santos i reszta mapy</strong><small>poza RP</small></span></li>
+    </ul>
+    <p class="area-foot">Drogi między miejscowościami służą tylko do przejazdu i pościgów. Szczegóły w punktach <a href="#p1-9">1.9 - 1.13</a>.</p>
+  </aside>
+</header>
+
+<div class="layout">
+
+<nav class="toc" aria-label="Spis treści">
+  <p class="toc-title">Spis treści</p>
+  <ol>
+    <li><a href="#s1"><span>1</span>Postanowienia ogólne i obszar gry</a></li>
+    <li><a href="#s2"><span>2</span>Słowniczek</a></li>
+    <li><a href="#s3"><span>3</span>Fair RP i rodzaje Fail RP</a></li>
+    <li><a href="#s4"><span>4</span>Komunikacja IC / OOC</a></li>
+    <li><a href="#s5"><span>5</span>Postać, BW i CK</a></li>
+    <li><a href="#s6"><span>6</span>Strefy bezpieczne</a></li>
+    <li><a href="#s7"><span>7</span>Akcje przestępcze</a></li>
+    <li><a href="#s8" class="key"><span>8</span>Limity akcji</a></li>
+    <li><a href="#s9"><span>9</span>Zakładnicy i negocjacje</a></li>
+    <li><a href="#s10"><span>10</span>Okradanie graczy</a></li>
+    <li><a href="#s11"><span>11</span>Sheriff</a></li>
+    <li><a href="#s12"><span>12</span>EMS</a></li>
+    <li><a href="#s13"><span>13</span>Organizacje i wojny</a></li>
+    <li><a href="#s14"><span>14</span>Pojazdy i pościgi</a></li>
+    <li><a href="#s15"><span>15</span>Discord i sprawy techniczne</a></li>
+    <li><a href="#s16"><span>16</span>Streamerzy</a></li>
+    <li><a href="#s17"><span>17</span>Zgłoszenia i dowody</a></li>
+    <li><a href="#s18"><span>18</span>Kary</a></li>
+    <li><a href="#s19"><span>19</span>Postanowienia końcowe</a></li>
+  </ol>
+</nav>
+
+<main class="doc">
+
+<details class="toc-mobile">
+  <summary>Spis treści</summary>
+  <ol>
+    <li><a href="#s1"><span>1</span>Postanowienia ogólne i obszar gry</a></li>
+    <li><a href="#s2"><span>2</span>Słowniczek</a></li>
+    <li><a href="#s3"><span>3</span>Fair RP i rodzaje Fail RP</a></li>
+    <li><a href="#s4"><span>4</span>Komunikacja IC / OOC</a></li>
+    <li><a href="#s5"><span>5</span>Postać, BW i CK</a></li>
+    <li><a href="#s6"><span>6</span>Strefy bezpieczne</a></li>
+    <li><a href="#s7"><span>7</span>Akcje przestępcze</a></li>
+    <li><a href="#s8" class="key"><span>8</span>Limity akcji</a></li>
+    <li><a href="#s9"><span>9</span>Zakładnicy i negocjacje</a></li>
+    <li><a href="#s10"><span>10</span>Okradanie graczy</a></li>
+    <li><a href="#s11"><span>11</span>Sheriff</a></li>
+    <li><a href="#s12"><span>12</span>EMS</a></li>
+    <li><a href="#s13"><span>13</span>Organizacje i wojny</a></li>
+    <li><a href="#s14"><span>14</span>Pojazdy i pościgi</a></li>
+    <li><a href="#s15"><span>15</span>Discord i sprawy techniczne</a></li>
+    <li><a href="#s16"><span>16</span>Streamerzy</a></li>
+    <li><a href="#s17"><span>17</span>Zgłoszenia i dowody</a></li>
+    <li><a href="#s18"><span>18</span>Kary</a></li>
+    <li><a href="#s19"><span>19</span>Postanowienia końcowe</a></li>
+  </ol>
+</details>
+
+<div class="intro">
+  <p><strong>Siema!</strong></p>
+  <p>Fajnie, że wbijasz na Vortex RP. Gramy w hrabstwie Blaine, tylko w <strong>Sandy Shores</strong> i <strong>Paleto Bay</strong>. Zanim wejdziesz na serwer, przeczytaj ten regulamin od początku do końca. Wiemy, że jest długi, ale prawie każdy punkt powstał przez jakąś sytuację, która już się u nas wydarzyła albo którą widzieliśmy na innych serwerach. Lepiej przeczytać raz porządnie, niż potem tłumaczyć się na tickecie.</p>
+  <p>Wchodząc na serwer i na nasz Discord, akceptujesz wszystko, co jest napisane poniżej. Tekst "nie wiedziałem" u nas nie działa.</p>
+  <p>Miłej gry,<br><span class="sign">Administracja Vortex RP</span></p>
+</div>
+
+<!-- ============ 1 ============ -->
+<section id="s1">
+  <header class="sec-head"><span class="sec-no">§ 1</span><h2>Postanowienia ogólne i obszar gry</h2></header>
+
+  <div class="rule"><span class="no">1.1</span><div><p>Vortex RP to serwer RolePlay. Grasz postacią, nie sobą. Chodzi o to, żeby wspólnie tworzyć ciekawe historie, a nie o to, żeby za wszelką cenę "wygrać" każdą sytuację. Czasem przegrana akcja to najlepsze, co może się przytrafić twojej postaci.</p></div></div>
+  <div class="rule"><span class="no">1.2</span><div><p>Każdy gracz ma obowiązek znać regulamin. Niewiedza nie zwalnia z odpowiedzialności.</p></div></div>
+  <div class="rule"><span class="no">1.3</span><div><p>Minimalny wiek na serwerze to 16 lat.</p></div></div>
+  <div class="rule"><span class="no">1.4</span><div><p>Musisz mieć sprawny mikrofon i grać na głosie. Gra bez mikrofonu jest możliwa tylko w wyjątkowych sytuacjach, po zgłoszeniu tego na tickecie. Modulatory głosu są zakazane.</p></div></div>
+  <div class="rule"><span class="no">1.5</span><div><p>Jeśli jakiejś sytuacji nie opisuje regulamin, administracja rozstrzyga ją według zdrowego rozsądku i tego, co jest dobre dla rozgrywki. Decyzja admina na serwerze obowiązuje do czasu rozpatrzenia ticketu.</p></div></div>
+  <div class="rule"><span class="no">1.6</span><div><p>Z decyzjami administracji nie dyskutujemy na kanałach publicznych ani na serwerze. Nie zgadzasz się? Otwierasz ticket.</p></div></div>
+  <div class="rule"><span class="no">1.7</span><div><p>Administracja może zmieniać regulamin. Każda zmiana pojawia się na kanale #ogłoszenia na Discordzie i obowiązuje od momentu publikacji.</p></div></div>
+  <div class="rule"><span class="no">1.8</span><div><p>Za swoje konto odpowiadasz ty. Jeśli brat albo kolega coś na nim narobi, kara idzie na twoje konto.</p></div></div>
+
+  <h3>Obszar gry</h3>
+  <div class="rule" id="p1-9"><span class="no">1.9</span><div><p>Cała rozgrywka na Vortex RP toczy się <strong>wyłącznie w Sandy Shores i Paleto Bay</strong>. Drogi między tymi miejscowościami służą tylko do przejazdu i pościgów.</p></div></div>
+  <div class="rule"><span class="no">1.10</span><div><p>Los Santos i reszta mapy są poza RP. Nie jeździsz tam, nie robisz tam akcji, nie chowasz się tam i nie zostawiasz tam aut.</p></div></div>
+  <div class="rule"><span class="no">1.11</span><div><p>Akcje przestępcze zaczynasz tylko w Sandy Shores albo w Paleto Bay. Wyjątek: okradzenie osoby, carjacking i napad na transport gotówki mogą się zacząć też na drodze między miejscowościami.</p></div></div>
+  <div class="rule" id="p1-12"><span class="no">1.12</span><div><p>Pościg nie może wyjechać poza obszar gry. Jeśli Crime ucieknie poza obszar, żeby zgubić Sheriff, ucieczka się nie liczy, a administracja może uznać zatrzymanie.</p></div></div>
+  <div class="rule"><span class="no">1.13</span><div><p>Jeśli twoja postać fabularnie wyjeżdża z hrabstwa (np. do rodziny w Los Santos), odgrywasz to rozmową albo przez <code>/do</code> i wychodzisz z gry. Nie jedziesz autem przez pół mapy.</p></div></div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section id="s2">
+  <header class="sec-head"><span class="sec-no">§ 2</span><h2>Słowniczek</h2></header>
+  <p class="lead">Żeby nikt nie mówił, że nie zna skrótów:</p>
+  <dl class="glossary">
+    <dt>IC<small>In Character</small></dt><dd>Wszystko, co dzieje się w grze, w świecie twojej postaci.</dd>
+    <dt>OOC<small>Out Of Character</small></dt><dd>Wszystko poza grą: ty jako gracz, Discord, stream, twoje prawdziwe życie.</dd>
+    <dt>Crime</dt><dd>Strona przestępcza w akcji. Każda osoba, która bierze udział w przestępstwie.</dd>
+    <dt>Sheriff</dt><dd>Służby porządkowe na serwerze (funkcjonariusze na służbie).</dd>
+    <dt>EMS</dt><dd>Służby medyczne.</dd>
+    <dt>Akcja</dt><dd>Zaplanowana sytuacja RP, np. napad, porwanie, pościg.</dd>
+    <dt>BW<small>Brutally Wounded</small></dt><dd>Stan nieprzytomności po odniesieniu ciężkich obrażeń.</dd>
+    <dt>CK<small>Character Kill</small></dt><dd>Trwała śmierć postaci. Postać przestaje istnieć.</dd>
+    <dt>NLR<small>New Life Rule</small></dt><dd>Zasada nowego życia po respawnie (punkt <a href="#p3-8">3.8</a>).</dd>
+    <dt>Inicjacja</dt><dd>Jasny sygnał dla drugiej osoby, że jest w zagrożeniu, z czasem na reakcję.</dd>
+    <dt>Cooldown</dt><dd>Czas, który musi minąć, zanim daną akcję można zrobić ponownie.</dd>
+    <dt>Safe Zone</dt><dd>Strefa bezpieczna, w której nie robi się akcji przestępczych.</dd>
+    <dt>Fail RP</dt><dd>Każde zachowanie, które psuje RP albo jest nierealne. Wszystkie rodzaje są rozpisane w punkcie 3.</dd>
+  </dl>
+</section>
+
+<!-- ============ 3 ============ -->
+<section id="s3">
+  <header class="sec-head"><span class="sec-no">§ 3</span><h2>Fair RP i wszystkie rodzaje Fail RP</h2></header>
+  <p class="lead">Fair RP to po prostu uczciwa gra. Grasz tak, żeby druga strona też miała z tego frajdę i realną szansę na reakcję. Jeśli robisz coś tylko po to, żeby wygrać, a nie żeby zagrać ciekawą scenę, to prawie na pewno łamiesz któryś z punktów poniżej.</p>
+  <p>Niżej masz wszystkie rodzaje Fail RP, za które u nas lecą kary. Kliknij nazwę, żeby od razu przejść do punktu:</p>
+  <ul class="chips">
+    <li><a href="#p3-1">RDM</a></li>
+    <li><a href="#p3-2">VDM</a></li>
+    <li><a href="#p3-3">MG</a></li>
+    <li><a href="#p3-4">PG</a></li>
+    <li><a href="#p3-5">Fear RP</a></li>
+    <li><a href="#p3-6">Value of Life</a></li>
+    <li><a href="#p3-7">Combat Log</a></li>
+    <li><a href="#p3-8">NLR</a></li>
+    <li><a href="#p3-9">Revenge Kill</a></li>
+    <li><a href="#p3-10">Spawn Kill</a></li>
+    <li><a href="#p3-11">Cop Bait</a></li>
+    <li><a href="#p3-12">Fail Driving</a></li>
+    <li><a href="#p3-13">Fail Weapon</a></li>
+    <li><a href="#p3-14">Fail Escape</a></li>
+    <li><a href="#p3-15">Bunny hop</a></li>
+    <li><a href="#p3-16">IC / OOC</a></li>
+    <li><a href="#p3-17">Third Party</a></li>
+    <li><a href="#p3-18">Zmiana postaci</a></li>
+    <li><a href="#p3-19">Godmode RP</a></li>
+    <li><a href="#p3-20">/me i /do</a></li>
+    <li><a href="#p3-21">Bugi</a></li>
+    <li><a href="#p3-22">Troll RP</a></li>
+    <li><a href="#p3-23">Fail Character</a></li>
+    <li><a href="#p3-24">EMS i sprzęt</a></li>
+    <li><a href="#p3-25">Safe Zone</a></li>
+    <li><a href="#p3-26">Griefing</a></li>
+    <li><a href="#p3-27">Tematy wrażliwe</a></li>
+  </ul>
+
+  <div class="fail" id="p3-1">
+    <h3><span class="n">3.1</span>RDM (Random Deathmatch)</h3>
+    <p>Atakowanie, bicie, strzelanie albo zabijanie kogoś bez powodu IC i bez wcześniejszej interakcji RP.</p>
+    <p>Zanim zaatakujesz, musi być <strong>inicjacja</strong>, czyli wyraźny komunikat dla drugiej osoby, że jest zagrożona, i chwila na reakcję (minimum kilka sekund). Na przykład: "Ręce do góry albo strzelam!". Krzyk z przejeżdżającego auta albo "eee" w biegu to nie jest inicjacja.</p>
+    <p class="ex-label">Przykłady</p>
+    <ul class="list">
+      <li>strzelasz do kogoś, bo "dziwnie się patrzył",</li>
+      <li>bijesz losową osobę na ulicy, bo się nudzisz,</li>
+      <li>zabijasz kogoś, kto wykonał wszystkie twoje polecenia,</li>
+      <li>strzelasz do osoby, która się poddała i trzyma ręce w górze.</li>
+    </ul>
+    <p>Konflikt sprzed kilku dni nie jest automatycznie powodem do zabicia kogoś przy następnym spotkaniu. Musi być nowa interakcja.</p>
+  </div>
+
+  <div class="fail" id="p3-2">
+    <h3><span class="n">3.2</span>VDM (Vehicle Deathmatch)</h3>
+    <p>Używanie pojazdu jako broni. Rozjeżdżanie ludzi, celowe taranowanie aut bez powodu RP, wjeżdżanie w grupy pieszych.</p>
+    <p>Jeśli w trakcie ucieczki ktoś wbiegnie ci prosto pod maskę i nie dało się go ominąć, to nie jest VDM. Celowe polowanie autem na ludzi zawsze nim jest.</p>
+  </div>
+
+  <div class="fail" id="p3-3">
+    <h3><span class="n">3.3</span>MG (Metagaming)</h3>
+    <p>Wykorzystywanie w grze informacji, których twoja postać nie mogła zdobyć IC.</p>
+    <p class="ex-label">Przykłady</p>
+    <ul class="list">
+      <li>wiesz z Discorda, streama albo od kolegi, gdzie ktoś jest, i jedziesz tam w grze,</li>
+      <li>rozpoznajesz kogoś po nicku nad głową albo po ID, chociaż ma zakrytą twarz,</li>
+      <li>kolega na Discordzie mówi ci, że "Sheriff jedzie od strony Paleto",</li>
+      <li>znasz imię postaci, która nigdy ci się nie przedstawiła.</li>
+    </ul>
+    <p>Gadanie z ekipą przez Discorda zamiast przez radio w grze to też MG. Do komunikacji na odległość używasz radia i telefonu IC.</p>
+  </div>
+
+  <div class="fail" id="p3-4">
+    <h3><span class="n">3.4</span>PG (Powergaming)</h3>
+    <p>Robienie rzeczy niemożliwych w prawdziwym życiu albo narzucanie komuś akcji tak, że nie ma szans zareagować.</p>
+    <p class="ex-label">Przykłady</p>
+    <ul class="list">
+      <li><code>/me wyrywa mu broń i zabija go jednym ciosem</code>,</li>
+      <li><code>/me zakuwa go</code>, kiedy tamten ucieka, a ty go jeszcze nie obezwładniłeś,</li>
+      <li>wyciąganie broni, gdy ktoś już do ciebie celuje, a ty masz ręce w górze,</li>
+      <li>noszenie kilku karabinów i lodówki w kieszeni,</li>
+      <li>przyjmowanie na klatę kilku kul i bieganie dalej, jakby nic się nie stało,</li>
+      <li>zjazd autem z klifu i jazda dalej.</li>
+    </ul>
+  </div>
+
+  <div class="fail" id="p3-5">
+    <h3><span class="n">3.5</span>Fear RP</h3>
+    <p>Twoja postać ma się bać. Jeśli ktoś do ciebie celuje, a ty nie masz broni w ręku, wykonujesz polecenia. Nie rzucasz się z pięściami na trzech gości z pistoletami.</p>
+    <p>Dotyczy to też sytuacji bez broni w ręku. Stoisz w nocy w lesie pod Paleto przed pięcioma zamaskowanymi typami? Raczej nie zaczynasz ich wyzywać.</p>
+    <p>Możesz spróbować uciec albo się bronić, jeśli pojawi się <strong>realna</strong> szansa (napastnik się odwrócił, przyjechał Sheriff i zrobiło się zamieszanie). Ale to musi mieć sens i być odegrane.</p>
+  </div>
+
+  <div class="fail" id="p3-6">
+    <h3><span class="n">3.6</span>Brak Value of Life</h3>
+    <p>Twoja postać ma jedno życie i powinna o nie dbać. Przykłady braku Value of Life:</p>
+    <ul class="list">
+      <li>wchodzisz sam w strzelaninę, w której nie masz żadnych szans,</li>
+      <li>skaczesz z dachu, bo "przecież EMS mnie podniesie",</li>
+      <li>prowokujesz uzbrojonych ludzi, kiedy jesteś sam i bez broni,</li>
+      <li>wybiegasz zza osłony pod ostrzał, bo chcesz ustrzelić jeszcze jednego.</li>
+    </ul>
+  </div>
+
+  <div class="fail" id="p3-7">
+    <h3><span class="n">3.7</span>Combat Logging</h3>
+    <p>Wyjście z gry (Alt+F4, wyjście do menu, celowy crash) w trakcie akcji, żeby uniknąć konsekwencji: aresztowania, okradzenia, BW.</p>
+    <p>Jeśli wyrzuciło cię naprawdę (crash, prąd, internet):</p>
+    <ul class="list">
+      <li>wracasz na serwer najszybciej, jak się da,</li>
+      <li>od razu robisz ticket, w którym piszesz, w jakiej akcji brałeś udział i co się stało,</li>
+      <li>po powrocie kontynuujesz akcję w tym samym stanie, w jakim byłeś. Jak byłeś skuty, to dalej jesteś skuty.</li>
+    </ul>
+    <p>Jeśli nie wrócisz w ciągu 15 minut i nie dasz znać, traktujemy to jak combat log.</p>
+  </div>
+
+  <div class="fail" id="p3-8">
+    <h3><span class="n">3.8</span>NLR (New Life Rule)</h3>
+    <p>Jeśli twoja postać trafi do BW i zrobisz respawn w szpitalu:</p>
+    <ul class="list">
+      <li>nie pamiętasz okoliczności akcji, w której straciłeś przytomność (kto cię postrzelił, gdzie, dlaczego),</li>
+      <li>przez <strong>20 minut</strong> nie wracasz w rejon tej akcji,</li>
+      <li>nie możesz wrócić do tej samej akcji.</li>
+    </ul>
+    <p>Jeśli podniósł cię EMS albo ktoś z apteczką, pamiętasz ogólnie, co się stało, ale twoja postać jest osłabiona. Jeżeli podniesiono cię w trakcie trwającej akcji, nie bierzesz w niej już aktywnego udziału (nie strzelasz, nie uciekasz sprintem). Zero "wstaję i lecę dalej strzelać".</p>
+  </div>
+
+  <div class="fail" id="p3-9">
+    <h3><span class="n">3.9</span>Revenge Kill</h3>
+    <p>Mszczenie się na kimś za BW albo śmierć zaraz po respawnie, z wykorzystaniem wiedzy, której przez NLR nie masz. Zemsta IC jest okej, ale musi wynikać z RP (np. twoja postać dowiedziała się IC, kto za tym stoi) i nie może się dziać chwilę po respawnie.</p>
+  </div>
+
+  <div class="fail" id="p3-10">
+    <h3><span class="n">3.10</span>Spawn Kill</h3>
+    <p>Czekanie pod szpitalem albo w miejscu respawnu, żeby kogoś od razu dobić albo okraść. Zakazane w każdej sytuacji.</p>
+  </div>
+
+  <div class="fail" id="p3-11">
+    <h3><span class="n">3.11</span>Cop Bait</h3>
+    <p>Prowokowanie Sheriff bez powodu, tylko po to, żeby był pościg albo "żeby się coś działo".</p>
+    <p>Przykłady: kręcenie bączków pod komendą w Sandy albo w Paleto, celowe wjechanie w radiowóz i ucieczka, obrażanie funkcjonariuszy bez żadnego powodu RP, przelatywanie 200 km/h w kółko obok patrolu.</p>
+  </div>
+
+  <div class="fail" id="p3-12">
+    <h3><span class="n">3.12</span>Fail Driving</h3>
+    <p>Jazda, której nie da się zrobić w prawdziwym życiu:</p>
+    <ul class="list">
+      <li>supersport albo auto sportowe w terenie (góry, las, pustynia, pola),</li>
+      <li>skakanie autem z dużych wysokości i jechanie dalej,</li>
+      <li>jazda na samych felgach 150 km/h,</li>
+      <li>dachowanie i jazda dalej, jakby nic się nie stało,</li>
+      <li>jazda po torach, schodach i chodnikach bez powodu,</li>
+      <li>wpychanie się autem tam, gdzie się realnie nie zmieści.</li>
+    </ul>
+    <p>Po poważnym wypadku twoja postać jest poobijana. Odegraj to.</p>
+  </div>
+
+  <div class="fail" id="p3-13">
+    <h3><span class="n">3.13</span>Fail Weapon</h3>
+    <ul class="list">
+      <li>wyciąganie broni z niczego (będąc skutym, w BW, z rękami w górze),</li>
+      <li>strzelanie z auta jako kierowca w trakcie jazdy,</li>
+      <li>spamowanie zmianą broni w trakcie strzelaniny,</li>
+      <li>wykorzystywanie kamery trzecioosobowej do zaglądania za rogi i ściany, kiedy postać realnie tego nie widzi.</li>
+    </ul>
+  </div>
+
+  <div class="fail" id="p3-14">
+    <h3><span class="n">3.14</span>Fail Escape</h3>
+    <ul class="list">
+      <li>ucieczka sprintem w kajdankach, jakby ich nie było,</li>
+      <li>wyskakiwanie z jadącego radiowozu,</li>
+      <li>uwalnianie się z kajdanek albo celi przez buga lub skrypt,</li>
+      <li>wstawanie z BW bez EMS albo respawnu.</li>
+    </ul>
+    <p>Ucieczka w kajdankach jest możliwa, ale musi być odegrana i realna (wolniejszy bieg, duża szansa, że cię złapią).</p>
+  </div>
+
+  <div class="fail" id="p3-15">
+    <h3><span class="n">3.15</span>Bunny hop i combat roll</h3>
+    <p>Ciągłe skakanie w biegu albo w walce, żeby trudniej było cię trafić, i spamowanie przewrotów w strzelaninie. Zakazane.</p>
+  </div>
+
+  <div class="fail" id="p3-16">
+    <h3><span class="n">3.16</span>Mieszanie IC z OOC</h3>
+    <ul class="list">
+      <li>gadanie o sprawach OOC na głosie w grze ("ej, jutro mam sprawdzian"),</li>
+      <li>przerywanie akcji, żeby kłócić się o zasady ("to jest RDM, zgłaszam!"),</li>
+      <li>przenoszenie konfliktów OOC do gry albo z gry na OOC (np. wyzywanie kogoś na Discordzie, bo jego postać cię okradła).</li>
+    </ul>
+    <p>Widzisz łamanie zasad? Dokończ akcję, zachowaj nagranie i zrób ticket. Jedyny wyjątek to sytuacja, w której dalsza gra jest niemożliwa (np. ktoś się zbugował w teksturach). Wtedy krótko na czacie OOC i wołasz admina.</p>
+  </div>
+
+  <div class="fail" id="p3-17">
+    <h3><span class="n">3.17</span>Third Party</h3>
+    <p>Wtrącanie się do cudzej akcji, z którą twoja postać nie ma nic wspólnego. Np. przejeżdżasz obok napadu na sklep i zaczynasz strzelać do napastników albo do Sheriff, bo tak ci się zachciało.</p>
+    <p>Jeśli twoja postać ma realny powód IC (to twój sklep, twój kumpel jest zakładnikiem), możesz zareagować, ale nie wolno przekroczyć limitów z <a href="#s8">punktu 8</a> i dalej obowiązuje Fear RP.</p>
+  </div>
+
+  <div class="fail" id="p3-18">
+    <h3><span class="n">3.18</span>Zmiana postaci i przekazywanie rzeczy</h3>
+    <ul class="list">
+      <li>przelogowanie się na inną postać, żeby uniknąć konsekwencji (aresztu, długu, akcji),</li>
+      <li>przekazywanie pieniędzy, przedmiotów i aut między swoimi postaciami (bezpośrednio albo przez kolegę),</li>
+      <li>używanie wiedzy jednej swojej postaci na drugiej (to też MG).</li>
+    </ul>
+  </div>
+
+  <div class="fail" id="p3-19">
+    <h3><span class="n">3.19</span>Ignorowanie obrażeń (Godmode RP)</h3>
+    <p>Jak zostałeś postrzelony, pobity albo miałeś wypadek, twoja postać jest ranna i to odgrywasz. Kulejesz, trzymasz się za ranę, nie biegasz maratonu.</p>
+    <p>W trakcie trwającej wymiany ognia <strong>nie wolno</strong> używać apteczek, bandaży, kamizelek ani jedzenia, żeby się podleczyć. Najpierw akcja musi się skończyć albo musisz się realnie wycofać w bezpieczne miejsce (a nie dwa metry za winkiel).</p>
+  </div>
+
+  <div class="fail" id="p3-20">
+    <h3><span class="n">3.20</span>Fail /me i /do</h3>
+    <ul class="list">
+      <li><code>/me</code> służy do opisu czynności twojej postaci, a <code>/do</code> do opisu otoczenia albo stanu.</li>
+      <li><code>/do</code> zawsze musi być zgodne z prawdą. Jak ktoś pyta <code>/do czy ma coś przy pasie?</code>, odpowiadasz zgodnie z tym, co faktycznie masz.</li>
+      <li>Nie używasz <code>/me</code> do powergamingu (<a href="#p3-4">3.4</a>) ani do opisywania, co czuje albo robi inna postać.</li>
+      <li>Nie spamujesz <code>/me</code> co sekundę.</li>
+    </ul>
+  </div>
+
+  <div class="fail" id="p3-21">
+    <h3><span class="n">3.21</span>Abuse bugów i mechanik</h3>
+    <p>Wykorzystywanie błędów gry albo skryptów, żeby coś zyskać: duplikowanie przedmiotów i kasy, przechodzenie przez ściany, glitche w drzwiach i ogrodzeniach, chowanie się w teksturach, omijanie cooldownów, wychodzenie z kajdanek przez buga.</p>
+    <p>Znalazłeś buga? Zgłaszasz go na tickecie i z niego nie korzystasz. Za wykorzystywanie bugów jest ban, nawet permanentny.</p>
+  </div>
+
+  <div class="fail" id="p3-22">
+    <h3><span class="n">3.22</span>Troll RP</h3>
+    <p>Granie tylko po to, żeby psuć innym zabawę: darcie się do mikrofonu, puszczanie muzyki i soundboardów na głosie, robienie z każdej akcji kabaretu, celowe blokowanie drogi, wjeżdżanie w każdą sytuację "dla beki". Postać może być zabawna, ale nie może być narzędziem do trollowania.</p>
+  </div>
+
+  <div class="fail" id="p3-23">
+    <h3><span class="n">3.23</span>Fail Character</h3>
+    <p>Zachowanie, które w ogóle nie trzyma się realiów ani twojej postaci. Na przykład:</p>
+    <ul class="list">
+      <li>tańczenie nad ciałem kumpla zaraz po strzelaninie,</li>
+      <li>robienie zakupów w środku pościgu,</li>
+      <li>spokojny mechanik, który nagle zachowuje się jak zawodowy snajper i ma do tego sprzęt.</li>
+    </ul>
+  </div>
+
+  <div class="fail" id="p3-24">
+    <h3><span class="n">3.24</span>Ataki na EMS i sprzęt służbowy</h3>
+    <ul class="list">
+      <li>atakowanie, okradanie i porywanie EMS na służbie jest zakazane (<a href="#s12">punkt 12</a>),</li>
+      <li>kradzież pojazdów służbowych (radiowozy, karetki) jest zakazana,</li>
+      <li>zabieranie funkcjonariuszom broni służbowej, radia, munduru i sprzętu jest zakazane, chyba że administracja zgodziła się na to przy konkretnej dużej akcji.</li>
+    </ul>
+  </div>
+
+  <div class="fail" id="p3-25">
+    <h3><span class="n">3.25</span>Akcje w strefie bezpiecznej</h3>
+    <p>Wszystko, co opisuje <a href="#s6">punkt 6</a>.</p>
+  </div>
+
+  <div class="fail" id="p3-26">
+    <h3><span class="n">3.26</span>Griefing</h3>
+    <p>Ciągłe nękanie jednej postaci (okradanie, porywanie, bicie w kółko) bez żadnej rozwijającej się fabuły. Jak twoja postać ma z kimś problem, to niech z tego wyjdzie historia, a nie codzienne dręczenie tej samej osoby.</p>
+  </div>
+
+  <div class="fail" id="p3-27">
+    <h3><span class="n">3.27</span>Tematy wrażliwe i zakazane</h3>
+    <div class="note">
+      <span class="note-label">Tylko za zgodą administracji</span>
+      <p>Te tematy możesz odegrać tylko wtedy, gdy administracja wcześniej zatwierdzi to na tickecie:</p>
+      <ul class="list">
+        <li>terroryzm (zamachy, wysadzanie budynków publicznych),</li>
+        <li>samobójstwo postaci (np. jako zakończenie jej historii, nigdy "dla beki"),</li>
+        <li>nawiązania do prawdziwych tragedii.</li>
+      </ul>
+      <p>Odegranie ich bez zgody kończy się banem (taryfikator w <a href="#s18">punkcie 18</a>).</p>
+    </div>
+    <div class="note danger">
+      <span class="note-label">Zakazane zawsze, ban permanentny</span>
+      <p>Tych rzeczy nie odgrywamy w ogóle, nawet za zgodą administracji:</p>
+      <ul class="list">
+        <li>przemoc seksualna w jakiejkolwiek formie,</li>
+        <li>jakiekolwiek treści związane z krzywdzeniem dzieci,</li>
+        <li>realny rasizm.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 ============ -->
+<section id="s4">
+  <header class="sec-head"><span class="sec-no">§ 4</span><h2>Komunikacja IC / OOC</h2></header>
+  <div class="rule"><span class="no">4.1</span><div><p>Na serwerze rozmawiamy na głosie IC. Czatu OOC używasz tylko wtedy, kiedy naprawdę musisz, i krótko.</p></div></div>
+  <div class="rule"><span class="no">4.2</span><div><p>Do komunikacji na odległość w grze używasz telefonu i radia IC. Discord to nie radio (<a href="#p3-3">3.3</a>).</p></div></div>
+  <div class="rule"><span class="no">4.3</span><div><p>Na głosie IC nie rzucamy tekstami typu "bug", "admin", "ban", "serwer". Zamiast "zaraz restart" mówi się na przykład "idzie burza, trzeba się zbierać".</p></div></div>
+  <div class="rule"><span class="no">4.4</span><div><p>Zakaz krzyczenia do mikrofonu, piszczenia i puszczania muzyki przez mikrofon. Wyjątek: RP, które tego wymaga (np. DJ w barze za zgodą właściciela lokalu).</p></div></div>
+  <div class="rule"><span class="no">4.5</span><div><p>Na serwerze obowiązuje język polski. Postać obcokrajowca może mówić z akcentem albo wtrącać słowa w innym języku, ale tak, żeby inni rozumieli, o co chodzi.</p></div></div>
+  <div class="rule"><span class="no">4.6</span><div><p>Wyzwiska IC są okej, jeśli pasują do postaci i sytuacji. Ale nie ma miejsca na rasizm, homofobię, obrażanie rodzin graczy i wycieczki do prawdziwego życia drugiej osoby.</p></div></div>
+</section>
+
+<!-- ============ 5 ============ -->
+<section id="s5">
+  <header class="sec-head"><span class="sec-no">§ 5</span><h2>Postać, BW i CK</h2></header>
+
+  <h3>Tworzenie postaci</h3>
+  <div class="rule"><span class="no">5.1</span><div><p>Imię i nazwisko muszą być realistyczne. Zakazane są: nazwiska znanych osób i postaci z filmów (Tony Montana, Walter White itp.), nicki ("xXKillerXx Kowalski"), wulgarne i "śmieszne" nazwiska z podtekstem.</p></div></div>
+  <div class="rule"><span class="no">5.2</span><div><p>Postać ma minimum 18 lat.</p></div></div>
+  <div class="rule"><span class="no">5.3</span><div><p>Na jednym koncie możesz mieć maksymalnie 2 postacie. Twoje postacie się nie znają, nie współpracują ze sobą i niczego sobie nie przekazują (<a href="#p3-18">3.18</a>).</p></div></div>
+  <div class="rule" id="p5-4"><span class="no">5.4</span><div><p>Jeśli jedna z twoich postaci jest w Sheriff albo w EMS, druga nie może należeć do organizacji przestępczej.</p></div></div>
+
+  <h3>BW</h3>
+  <div class="rule"><span class="no">5.5</span><div>
+    <p>Kiedy twoja postać trafi do BW:</p>
+    <ul class="list">
+      <li>leżysz i odgrywasz nieprzytomność albo ciężkie rany (jęczysz, ale nie mówisz konkretów),</li>
+      <li>nie rozmawiasz, nie używasz telefonu ani radia, nie przekazujesz żadnych informacji,</li>
+      <li>nie wykorzystujesz później tego, co widziałeś albo słyszałeś, leżąc w BW,</li>
+      <li>czekasz na EMS. Respawn możesz zrobić dopiero po upływie licznika BW.</li>
+    </ul>
+  </div></div>
+  <div class="rule"><span class="no">5.6</span><div><p>Po podniesieniu albo respawnie obowiązuje NLR (<a href="#p3-8">3.8</a>).</p></div></div>
+
+  <h3>CK</h3>
+  <div class="rule"><span class="no">5.7</span><div>
+    <p>CK może się odbyć tylko w dwóch przypadkach:</p>
+    <ul class="list">
+      <li>na prośbę właściciela postaci (chcesz zakończyć jej historię),</li>
+      <li>za zgodą administracji, po złożeniu wniosku z opisem powodu IC (np. postać zdradziła organizację, wydała kogoś Sheriff, ukradła dużą kasę). Wniosek musi zawierać dowody z RP.</li>
+    </ul>
+  </div></div>
+  <div class="rule"><span class="no">5.8</span><div><p>Właściciel postaci nie musi być uprzedzany OOC o planowanym CK, ale administracja musi je zatwierdzić <strong>przed</strong> akcją. CK bez zgody traktujemy jak RDM i dajemy bana.</p></div></div>
+  <div class="rule"><span class="no">5.9</span><div><p>Po CK postać przestaje istnieć. Nowa postać nie pamięta niczego z poprzedniej i nie może być z nią spokrewniona. O tym, co dzieje się z majątkiem, decyduje administracja.</p></div></div>
+</section>
+
+<!-- ============ 6 ============ -->
+<section id="s6">
+  <header class="sec-head"><span class="sec-no">§ 6</span><h2>Strefy bezpieczne (Safe Zone)</h2></header>
+  <div class="rule"><span class="no">6.1</span><div>
+    <p>Strefy bezpieczne to:</p>
+    <ul class="list">
+      <li>szpital w Sandy Shores i punkt medyczny w Paleto Bay (razem z parkingami),</li>
+      <li>komenda Sheriff w Sandy Shores i komenda Sheriff w Paleto Bay (razem z parkingami),</li>
+      <li>urząd,</li>
+      <li>miejsce spawnu nowych graczy,</li>
+      <li>miejsca rozpoczęcia prac dorywczych.</li>
+    </ul>
+    <p>Administracja może dodać kolejne strefy. Info zawsze pojawi się na Discordzie.</p>
+  </div></div>
+  <div class="rule"><span class="no">6.2</span><div><p>W strefie bezpiecznej nie wolno: zaczynać akcji przestępczych, okradać, porywać, bić, wyciągać broni, strzelać ani robić Cop Baita.</p></div></div>
+  <div class="rule"><span class="no">6.3</span><div><p>Ucieczka do strefy bezpiecznej nie chroni cię przed akcją, która zaczęła się poza nią. Pościg i zatrzymanie mogą być kontynuowane, ale w strefie nikt nie strzela. Wbieganie do szpitala, żeby "schować się przed akcją", to Fail RP.</p></div></div>
+  <div class="rule"><span class="no">6.4</span><div><p>Sheriff może normalnie wykonywać czynności służbowe w strefie bezpiecznej (zatrzymanie, mandat, przeszukanie).</p></div></div>
+</section>
+
+<!-- ============ 7 ============ -->
+<section id="s7">
+  <header class="sec-head"><span class="sec-no">§ 7</span><h2>Akcje przestępcze - zasady ogólne</h2></header>
+  <div class="rule"><span class="no">7.1</span><div><p>Każda akcja musi mieć sens RP. Napad to nie minigra na kasę. Planujecie go, odgrywacie wejście, zastraszanie, negocjacje i ucieczkę.</p></div></div>
+  <div class="rule"><span class="no">7.2</span><div><p>Do limitu osób z <a href="#s8">punktu 8</a> liczy się <strong>każdy</strong>, kto bierze udział w akcji: osoby w środku, kierowca, czujka na rogu, snajper na dachu, ktoś, kto blokuje drogę, ktoś, kto "tylko podwiózł" pod budynek. Nie ma czegoś takiego jak "on tylko stał obok".</p></div></div>
+  <div class="rule"><span class="no">7.3</span><div><p>Zakaz dosyłania ludzi ponad limit w trakcie akcji. Jak ktoś z waszej ekipy dostał BW, nie możecie go podmienić na nową osobę.</p></div></div>
+  <div class="rule"><span class="no">7.4</span><div><p>Przed rozpoczęciem akcji na służbie musi być minimalna liczba funkcjonariuszy Sheriff z tabeli w <a href="#s8">punkcie 8</a>. Pilnuje tego skrypt. Kombinowanie, żeby go obejść, traktujemy jak abuse bugów.</p></div></div>
+  <div class="rule"><span class="no">7.5</span><div>
+    <p>W tym samym czasie na całym serwerze może trwać:</p>
+    <ul class="list">
+      <li>tylko <strong>jedna duża akcja</strong> (napad na transport gotówki, porwanie funkcjonariusza albo napad na Paleto Bank),</li>
+      <li>maksymalnie <strong>dwie średnie akcje</strong> (sklepy, stacje, domy, Ammu-Nation, porwanie cywila), ale nie dwie w tej samej miejscowości. Jedna w Sandy Shores, jedna w Paleto Bay.</li>
+    </ul>
+    <p>Okradanie osób na ulicy i carjacking się do tego nie wliczają.</p>
+  </div></div>
+  <div class="rule"><span class="no">7.6</span><div><p>Cooldowny z tabeli liczą się od zakończenia akcji. Dodatkowo każda osoba, która brała udział w dużej akcji, nie może wziąć udziału w kolejnej dużej akcji przez <strong>2 godziny</strong>.</p></div></div>
+  <div class="rule"><span class="no">7.7</span><div><p>Nie zaczynamy żadnej akcji na <strong>20 minut przed restartem</strong> serwera. Jeśli restart przerwał akcję, robicie ticket, a administracja decyduje, co dalej.</p></div></div>
+  <div class="rule"><span class="no">7.8</span><div><p>Maska zakrywa twarz, ale nie głos. Nie możesz rozpoznać zamaskowanej osoby po nicku czy ID (to MG). Możesz ją rozpoznać po charakterystycznym głosie, ubraniu, tatuażach albo aucie, jeśli twoja postać miała z nią wcześniej styczność.</p></div></div>
+  <div class="rule"><span class="no">7.9</span><div><p>Każda akcja ma określoną dozwoloną broń (<a href="#s8">punkt 8</a>). Użycie cięższej broni niż dozwolona to Fail RP.</p></div></div>
+  <div class="rule"><span class="no">7.10</span><div><p>Akcję się kończy. Zaczęliście napad, to go odgrywacie do końca. Nie wolno zgarnąć kasy i wyjść z gry.</p></div></div>
+  <div class="rule"><span class="no">7.11</span><div><p>Akcja kończy się, kiedy Crime ucieknie (zgubi pościg), zostanie zatrzymany albo wszyscy trafią do BW. Nie ma wracania po łup i "drugiej rundy".</p></div></div>
+</section>
+
+<!-- ============ 8 ============ -->
+<section id="s8">
+  <header class="sec-head"><span class="sec-no">§ 8</span><h2>Limity akcji (Crime / Sheriff)</h2></header>
+  <p class="lead">To jest najważniejsza część dla każdego, kto robi akcje. Limity są po to, żeby było uczciwie dla obu stron. Przestępcy nie wjeżdżają w 15 osób na sklep, a Sheriff nie zjeżdża się całą komendą na jednego typa z nożem.</p>
+  <p>Liczby to <strong>maksymalna</strong> liczba osób albo pojazdów, które mogą brać udział w akcji po każdej stronie. Wszystkie akcje odbywają się tylko w Sandy Shores i Paleto Bay (<a href="#p1-9">1.9 - 1.13</a>).</p>
+  <ul class="tiers-legend">
+    <li><b>Małe</b> okradzenie, carjacking</li>
+    <li><b>Średnie</b> sklep, stacja, dom, porwanie cywila, Ammu-Nation</li>
+    <li><b>Duże</b> transport gotówki, porwanie funkcjonariusza</li>
+    <li><b>Największa</b> Paleto Bank</li>
+  </ul>
+
+  <!-- Małe -->
+  <div class="tier">
+    <div class="tier-head"><h3>Małe akcje</h3><span>bez minimum Sheriff na służbie</span></div>
+
+    <article class="limit">
+      <div class="limit-name"><h4>Okradzenie osoby</h4><span class="where">Sandy Shores, Paleto Bay, drogi między nimi</span></div>
+      <div class="score" aria-label="2 Crime na 3 Sheriff"><div class="side crime"><span class="num">2</span><span class="lbl">Crime</span></div><span class="vs">vs</span><div class="side sheriff"><span class="num">3</span><span class="lbl">Sheriff</span></div></div>
+      <dl class="facts">
+        <div><dt>Min. Sheriff na służbie</dt><dd>brak</dd></div>
+        <div><dt>Zakładnicy</dt><dd>-</dd></div>
+        <div><dt>Pojazdy Crime / Sheriff</dt><dd>1 / 2</dd></div>
+        <div><dt>Helikopter</dt><dd>nie</dd></div>
+        <div><dt>Broń Crime</dt><dd>biała, krótka</dd></div>
+        <div><dt>Cooldown</dt><dd>ta sama osoba: 2 h</dd></div>
+      </dl>
+    </article>
+
+    <article class="limit">
+      <div class="limit-name"><h4>Kradzież auta z kierowcą (carjacking)</h4><span class="where">Sandy Shores, Paleto Bay, drogi między nimi</span></div>
+      <div class="score" aria-label="2 Crime na 3 Sheriff"><div class="side crime"><span class="num">2</span><span class="lbl">Crime</span></div><span class="vs">vs</span><div class="side sheriff"><span class="num">3</span><span class="lbl">Sheriff</span></div></div>
+      <dl class="facts">
+        <div><dt>Min. Sheriff na służbie</dt><dd>brak</dd></div>
+        <div><dt>Zakładnicy</dt><dd>-</dd></div>
+        <div><dt>Pojazdy Crime / Sheriff</dt><dd>1 / 2</dd></div>
+        <div><dt>Helikopter</dt><dd>nie</dd></div>
+        <div><dt>Broń Crime</dt><dd>biała, krótka</dd></div>
+        <div><dt>Cooldown</dt><dd>brak</dd></div>
+      </dl>
+    </article>
+  </div>
+
+  <!-- Średnie -->
+  <div class="tier">
+    <div class="tier-head"><h3>Średnie akcje</h3><span>max 2 naraz, po jednej na miejscowość</span></div>
+
+    <article class="limit">
+      <div class="limit-name"><h4>Napad na sklep 24/7 / monopolowy</h4><span class="where">Sandy Shores, Paleto Bay</span></div>
+      <div class="score" aria-label="3 Crime na 5 Sheriff"><div class="side crime"><span class="num">3</span><span class="lbl">Crime</span></div><span class="vs">vs</span><div class="side sheriff"><span class="num">5</span><span class="lbl">Sheriff</span></div></div>
+      <dl class="facts">
+        <div><dt>Min. Sheriff na służbie</dt><dd>2</dd></div>
+        <div><dt>Zakładnicy</dt><dd>max 1</dd></div>
+        <div><dt>Pojazdy Crime / Sheriff</dt><dd>2 / 3</dd></div>
+        <div><dt>Helikopter</dt><dd>nie</dd></div>
+        <div><dt>Broń Crime</dt><dd>biała, krótka</dd></div>
+        <div><dt>Cooldown</dt><dd>ten sam sklep: 60 min</dd></div>
+      </dl>
+    </article>
+
+    <article class="limit">
+      <div class="limit-name"><h4>Napad na stację benzynową</h4><span class="where">Sandy Shores, Paleto Bay</span></div>
+      <div class="score" aria-label="3 Crime na 5 Sheriff"><div class="side crime"><span class="num">3</span><span class="lbl">Crime</span></div><span class="vs">vs</span><div class="side sheriff"><span class="num">5</span><span class="lbl">Sheriff</span></div></div>
+      <dl class="facts">
+        <div><dt>Min. Sheriff na służbie</dt><dd>2</dd></div>
+        <div><dt>Zakładnicy</dt><dd>max 1</dd></div>
+        <div><dt>Pojazdy Crime / Sheriff</dt><dd>2 / 3</dd></div>
+        <div><dt>Helikopter</dt><dd>nie</dd></div>
+        <div><dt>Broń Crime</dt><dd>biała, krótka</dd></div>
+        <div><dt>Cooldown</dt><dd>ta sama stacja: 60 min</dd></div>
+      </dl>
+    </article>
+
+    <article class="limit">
+      <div class="limit-name"><h4>Napad na dom / mieszkanie</h4><span class="where">Sandy Shores, Paleto Bay</span></div>
+      <div class="score" aria-label="3 Crime na 5 Sheriff"><div class="side crime"><span class="num">3</span><span class="lbl">Crime</span></div><span class="vs">vs</span><div class="side sheriff"><span class="num">5</span><span class="lbl">Sheriff</span></div></div>
+      <dl class="facts">
+        <div><dt>Min. Sheriff na służbie</dt><dd>2</dd></div>
+        <div><dt>Zakładnicy</dt><dd>max 1</dd></div>
+        <div><dt>Pojazdy Crime / Sheriff</dt><dd>2 / 3</dd></div>
+        <div><dt>Helikopter</dt><dd>nie</dd></div>
+        <div><dt>Broń Crime</dt><dd>biała, krótka</dd></div>
+        <div><dt>Cooldown</dt><dd>ten sam dom: 3 h</dd></div>
+      </dl>
+    </article>
+
+    <article class="limit">
+      <div class="limit-name"><h4>Porwanie cywila</h4><span class="where">Sandy Shores, Paleto Bay</span></div>
+      <div class="score" aria-label="3 Crime na 5 Sheriff"><div class="side crime"><span class="num">3</span><span class="lbl">Crime</span></div><span class="vs">vs</span><div class="side sheriff"><span class="num">5</span><span class="lbl">Sheriff</span></div></div>
+      <dl class="facts">
+        <div><dt>Min. Sheriff na służbie</dt><dd>2</dd></div>
+        <div><dt>Zakładnicy</dt><dd>1 (porwany)</dd></div>
+        <div><dt>Pojazdy Crime / Sheriff</dt><dd>2 / 3</dd></div>
+        <div><dt>Helikopter</dt><dd>nie</dd></div>
+        <div><dt>Broń Crime</dt><dd>biała, krótka</dd></div>
+        <div><dt>Cooldown</dt><dd>ta sama osoba: 24 h</dd></div>
+      </dl>
+    </article>
+
+    <article class="limit">
+      <div class="limit-name"><h4>Napad na Ammu-Nation</h4><span class="where">Sandy Shores, Paleto Bay</span></div>
+      <div class="score" aria-label="3 Crime na 5 Sheriff"><div class="side crime"><span class="num">3</span><span class="lbl">Crime</span></div><span class="vs">vs</span><div class="side sheriff"><span class="num">5</span><span class="lbl">Sheriff</span></div></div>
+      <dl class="facts">
+        <div><dt>Min. Sheriff na służbie</dt><dd>3</dd></div>
+        <div><dt>Zakładnicy</dt><dd>max 1</dd></div>
+        <div><dt>Pojazdy Crime / Sheriff</dt><dd>2 / 3</dd></div>
+        <div><dt>Helikopter</dt><dd>nie</dd></div>
+        <div><dt>Broń Crime</dt><dd>biała, krótka</dd></div>
+        <div><dt>Cooldown</dt><dd>90 min (cały serwer)</dd></div>
+      </dl>
+    </article>
+  </div>
+
+  <!-- Duże -->
+  <div class="tier">
+    <div class="tier-head"><h3>Duże akcje</h3><span>tylko 1 duża akcja naraz na serwerze</span></div>
+
+    <article class="limit">
+      <div class="limit-name"><h4>Napad na transport gotówki</h4><span class="where">trasa Sandy Shores - Paleto Bay</span></div>
+      <div class="score" aria-label="4 Crime na 7 Sheriff"><div class="side crime"><span class="num">4</span><span class="lbl">Crime</span></div><span class="vs">vs</span><div class="side sheriff"><span class="num">7</span><span class="lbl">Sheriff</span></div></div>
+      <dl class="facts">
+        <div><dt>Min. Sheriff na służbie</dt><dd>4</dd></div>
+        <div><dt>Zakładnicy</dt><dd>-</dd></div>
+        <div><dt>Pojazdy Crime / Sheriff</dt><dd>2 / 4</dd></div>
+        <div><dt>Helikopter</dt><dd>nie</dd></div>
+        <div><dt>Broń Crime</dt><dd>krótka, SMG</dd></div>
+        <div><dt>Cooldown</dt><dd>90 min (cały serwer)</dd></div>
+      </dl>
+    </article>
+
+    <article class="limit">
+      <div class="limit-name"><h4>Porwanie funkcjonariusza Sheriff</h4><span class="where">Sandy Shores, Paleto Bay</span></div>
+      <div class="score" aria-label="4 Crime na 7 Sheriff"><div class="side crime"><span class="num">4</span><span class="lbl">Crime</span></div><span class="vs">vs</span><div class="side sheriff"><span class="num">7</span><span class="lbl">Sheriff</span></div></div>
+      <dl class="facts">
+        <div><dt>Min. Sheriff na służbie</dt><dd>4</dd></div>
+        <div><dt>Zakładnicy</dt><dd>1 (porwany)</dd></div>
+        <div><dt>Pojazdy Crime / Sheriff</dt><dd>2 / 4</dd></div>
+        <div><dt>Helikopter</dt><dd>nie</dd></div>
+        <div><dt>Broń Crime</dt><dd>krótka, SMG</dd></div>
+        <div><dt>Cooldown</dt><dd>3 h (cały serwer)</dd></div>
+      </dl>
+    </article>
+  </div>
+
+  <!-- Największa -->
+  <div class="tier">
+    <div class="tier-head"><h3>Największa akcja</h3><span>tylko 1 duża akcja naraz na serwerze</span></div>
+
+    <article class="limit top">
+      <div class="limit-name"><h4>Napad na Paleto Bank</h4><span class="where">Blaine County Savings Bank, Paleto Bay</span></div>
+      <div class="score" aria-label="6 Crime na 10 Sheriff"><div class="side crime"><span class="num">6</span><span class="lbl">Crime</span></div><span class="vs">vs</span><div class="side sheriff"><span class="num">10</span><span class="lbl">Sheriff</span></div></div>
+      <dl class="facts">
+        <div><dt>Min. Sheriff na służbie</dt><dd>6</dd></div>
+        <div><dt>Zakładnicy</dt><dd>max 3</dd></div>
+        <div><dt>Pojazdy Crime / Sheriff</dt><dd>3 / 5</dd></div>
+        <div><dt>Helikopter</dt><dd>tak, 1</dd></div>
+        <div><dt>Broń Crime</dt><dd>krótka, SMG, długa</dd></div>
+        <div><dt>Cooldown</dt><dd>3 h (cały serwer)</dd></div>
+      </dl>
+    </article>
+  </div>
+
+  <h3>Rodzaje broni</h3>
+  <dl class="weapons">
+    <div><dt>Biała</dt><dd>noże, kije, kastety, pałki</dd></div>
+    <div><dt>Krótka</dt><dd>pistolety i rewolwery</dd></div>
+    <div><dt>SMG</dt><dd>pistolety maszynowe</dd></div>
+    <div><dt>Długa</dt><dd>karabiny i strzelby</dd></div>
+  </dl>
+  <div class="note danger">
+    <span class="note-label">Zakazane zawsze</span>
+    <p>Broń ciężka (RPG, granatniki, miniguny), granaty i materiały wybuchowe. Jedyny wyjątek to ładunki do otwierania sejfów i drzwi, jeśli wymaga ich skrypt napadu.</p>
+  </div>
+
+  <h3><span class="n">8.3</span>Jak liczyć limity</h3>
+  <div class="rule"><span class="no">8.3.1</span><div><p>Limit Sheriff obejmuje każdego funkcjonariusza, który bierze udział w akcji: na miejscu, w negocjacjach, w pościgu i w helikopterze (pilot też się liczy). Nie liczy się dyspozytor, który siedzi na komendzie i tylko przekazuje informacje przez radio.</p></div></div>
+  <div class="rule"><span class="no">8.3.2</span><div><p>Limit to górna granica, a nie obowiązek. Sheriff wysyła tyle jednostek, ile ma sens. Jak na sklep wbił jeden gość z nożem, nie zjeżdża się pięć radiowozów.</p></div></div>
+  <div class="rule"><span class="no">8.3.3</span><div><p>Przy małych i średnich akcjach (od okradzenia osoby do Ammu-Nation włącznie) Sheriff może mieć <strong>maksymalnie o 2 osoby więcej</strong>, niż faktycznie bierze udział Crime, ale nigdy więcej niż limit z tabeli. Przykład: na sklep weszło 2 przestępców, więc Sheriff może przyjechać maksymalnie w 4 osoby.</p></div></div>
+  <div class="rule"><span class="no">8.3.4</span><div><p>Przy dużych akcjach i napadzie na Paleto Bank Sheriff może wysłać pełny skład z tabeli, niezależnie od liczby Crime. Realnie i tak nie wie, ilu jest napastników.</p></div></div>
+  <div class="rule"><span class="no">8.3.5</span><div><p>Zakładnicy nie liczą się do limitu Crime ani Sheriff.</p></div></div>
+  <div class="rule"><span class="no">8.3.6</span><div><p>Limity pojazdów obowiązują przez całą akcję, łącznie z pościgiem. Motocykle też się liczą. Jednostki ponad limit nie dołączają do pościgu, nawet "tylko żeby postawić blokadę".</p></div></div>
+
+  <h3><span class="n">8.4</span>Przekroczenie limitów</h3>
+  <div class="rule"><span class="no">8.4.1</span><div><p>Jeśli Crime przekroczy limit, akcja zostaje anulowana, łup przepada, a wszyscy uczestnicy dostają kary (najwyższą lider akcji).</p></div></div>
+  <div class="rule"><span class="no">8.4.2</span><div><p>Jeśli Sheriff przekroczy limit, funkcjonariusze ponad limit dostają kary, a administracja może uznać akcję na korzyść Crime (np. zaliczyć udaną ucieczkę).</p></div></div>
+  <div class="rule"><span class="no">8.4.3</span><div><p>Taryfikator kar za przekroczenie limitów jest w <a href="#s18">punkcie 18</a>.</p></div></div>
+
+  <h3><span class="n">8.5</span>Akcje spoza tabeli</h3>
+  <div class="rule"><span class="no">8.5.1</span><div><p>Akcje, których nie ma w tabeli (np. napad na lotnisko w Sandy Shores, na tartak albo fabrykę w Paleto Bay, większe wydarzenia fabularne), robicie tylko za zgodą administracji. Ticket trzeba złożyć minimum 24 godziny wcześniej. Administracja ustala wtedy limity indywidualnie.</p></div></div>
+  <div class="rule"><span class="no">8.5.2</span><div><p>Wojny i strzelaniny między organizacjami opisuje <a href="#s13">punkt 13</a>.</p></div></div>
+</section>
+
+<!-- ============ 9 ============ -->
+<section id="s9">
+  <header class="sec-head"><span class="sec-no">§ 9</span><h2>Zakładnicy, porwania i negocjacje</h2></header>
+
+  <h3>Zakładnicy</h3>
+  <div class="rule"><span class="no">9.1</span><div><p>Zakładnik musi być prawdziwy. Zakaz "fake zakładników", czyli kumpla z ekipy albo znajomego, który tylko udaje zakładnika, żeby Sheriff nie mógł wejść do środka. Jak wyjdzie, że zakładnik był ustawiony, akcja jest anulowana, a kary dostają wszyscy, łącznie z "zakładnikiem".</p></div></div>
+  <div class="rule"><span class="no">9.2</span><div><p>Zakładnika też obowiązuje Fear RP. Nie rzuca się na napastników, nie ucieka bez szansy i nie dzwoni po kolegów.</p></div></div>
+  <div class="rule"><span class="no">9.3</span><div><p>Zabicie zakładnika bez powodu (np. kiedy Sheriff spełnia wszystkie ustalenia) to RDM.</p></div></div>
+
+  <h3>Porwania</h3>
+  <div class="rule"><span class="no">9.4</span><div><p>Porwanego można przetrzymywać maksymalnie <strong>30 minut</strong>.</p></div></div>
+  <div class="rule"><span class="no">9.5</span><div><p>Porwany musi mieć co grać: rozmowa, przesłuchanie, żądania. Porwanie kogoś i zostawienie go związanego w lesie na 40 minut, bo poszliście zająć się czymś innym, jest zakazane.</p></div></div>
+  <div class="rule"><span class="no">9.6</span><div><p>Porwanie funkcjonariusza Sheriff musi mieć konkretny powód IC. Nie wolno zabierać mu munduru ani broni służbowej (<a href="#p3-24">3.24</a>).</p></div></div>
+  <div class="rule"><span class="no">9.7</span><div><p>Okaleczenia i tortury odgrywamy w granicach rozsądku. Jeśli druga osoba wyraźnie czuje się z tym źle OOC, odpuszczacie. Punkt <a href="#p3-27">3.27</a> obowiązuje zawsze.</p></div></div>
+
+  <h3>Negocjacje</h3>
+  <div class="rule"><span class="no">9.8</span><div><p>Przy napadzie z zakładnikiem Sheriff ma obowiązek najpierw podjąć negocjacje.</p></div></div>
+  <div class="rule"><span class="no">9.9</span><div><p>Każda strona wyznacza jednego negocjatora.</p></div></div>
+  <div class="rule"><span class="no">9.10</span><div><p>Za jednego zakładnika jest jedno żądanie.</p></div></div>
+  <div class="rule"><span class="no">9.11</span><div>
+    <p>Żądania muszą być realne. Przykłady:</p>
+    <ul class="list">
+      <li><strong>okej:</strong> swobodny odjazd z 60 sekundami przewagi, brak kolczatek, brak helikoptera, wypuszczenie zakładnika w ustalonym miejscu,</li>
+      <li><strong>nie okej:</strong> milion dolarów, uwolnienie wszystkich więźniów, helikopter z pilotem, "odwołajcie wszystkie radiowozy z Sandy".</li>
+    </ul>
+  </div></div>
+  <div class="rule"><span class="no">9.12</span><div><p>Obie strony dotrzymują ustaleń. Jak Sheriff obiecał brak kolczatek, to ich nie rozkłada. Jak Crime obiecał wypuścić zakładnika, to go wypuszcza.</p></div></div>
+  <div class="rule"><span class="no">9.13</span><div>
+    <p>Sheriff może wejść siłowo, kiedy:</p>
+    <ul class="list">
+      <li>negocjacje zostały zerwane,</li>
+      <li>Crime otworzył ogień,</li>
+      <li>zakładnik jest w bezpośrednim zagrożeniu,</li>
+      <li>przez 15 minut negocjacji nie ma żadnego postępu.</li>
+    </ul>
+  </div></div>
+</section>
+
+<!-- ============ 10 ============ -->
+<section id="s10">
+  <header class="sec-head"><span class="sec-no">§ 10</span><h2>Okradanie graczy</h2></header>
+  <div class="rule"><span class="no">10.1</span><div><p>Okradając kogoś, możesz zabrać: gotówkę, broń, amunicję i nielegalne przedmioty (narkotyki, brudną kasę itp.).</p></div></div>
+  <div class="rule"><span class="no">10.2</span><div><p>Nie możesz zabrać: dokumentów, kluczy do mieszkania, przedmiotów z pracy, sprzętu służbowego. Telefonu też nie zabierasz na stałe. Możesz go wyłączyć albo wyrzucić w pobliżu, żeby ofiara nie zadzwoniła od razu po pomoc.</p></div></div>
+  <div class="rule"><span class="no">10.3</span><div><p>Zakaz zmuszania kogoś do przelewów albo wypłat z bankomatu.</p></div></div>
+  <div class="rule"><span class="no">10.4</span><div><p>Tę samą osobę możesz okraść maksymalnie raz na <strong>2 godziny</strong>.</p></div></div>
+  <div class="rule"><span class="no">10.5</span><div><p>Postać w BW możesz przeszukać tylko wtedy, gdy to wy doprowadziliście ją do BW w trakcie akcji. Łażenie po okolicy i "zbieranie" z leżących to Fail RP.</p></div></div>
+  <div class="rule"><span class="no">10.6</span><div><p>Skradzionego auta gracza nie zatrzymujesz na stałe. Po akcji je porzucasz, chyba że skrypt pozwala na coś innego (np. dziuplę).</p></div></div>
+</section>
+
+<!-- ============ 11 ============ -->
+<section id="s11">
+  <header class="sec-head"><span class="sec-no">§ 11</span><h2>Sheriff</h2></header>
+  <div class="rule"><span class="no">11.1</span><div><p>Funkcjonariusz na służbie działa zgodnie z prawem IC i procedurami frakcji. Wewnętrzny regulamin frakcji uzupełnia ten regulamin.</p></div></div>
+  <div class="rule"><span class="no">11.2</span><div><p>Sheriff nie otwiera ognia pierwszy bez powodu. Kolejność jest taka: wezwanie, ostrzeżenie, środki przymusu (taser, pałka), a broń palna na końcu. Wyjątek: Crime pierwszy użył broni albo realnie zagraża komuś życiu.</p></div></div>
+  <div class="rule"><span class="no">11.3</span><div><p>Broń musi być adekwatna do zagrożenia. Przy małych i średnich akcjach (do Ammu-Nation włącznie) funkcjonariusze używają broni krótkiej, tasera i pałki. Broń długa wchodzi do gry przy dużych akcjach i napadzie na Paleto Bank albo wtedy, gdy Crime sam ma broń długą.</p></div></div>
+  <div class="rule" id="p11-4"><span class="no">11.4</span><div><p>Skorumpowany funkcjonariusz to fajny wątek, ale wymaga zgody zarządu frakcji i administracji. Korupcja bez zgody jest zakazana.</p></div></div>
+  <div class="rule"><span class="no">11.5</span><div><p>Zakaz przekazywania informacji z radia i systemów służbowych osobom spoza frakcji (wyjątek: zatwierdzony wątek korupcyjny z <a href="#p11-4">11.4</a>).</p></div></div>
+  <div class="rule"><span class="no">11.6</span><div><p>Zakaz używania sprzętu służbowego (broni, radiowozu, munduru) poza służbą i wynoszenia go z komendy.</p></div></div>
+  <div class="rule"><span class="no">11.7</span><div><p>Przeszukania, zatrzymania i kontrole robi się zawsze z powodem IC.</p></div></div>
+  <div class="rule"><span class="no">11.8</span><div><p>Zatrzymanego nie trzyma się na komendzie bez potrzeby. Do 20 minut od zatrzymania powinno być przesłuchanie albo wyrok.</p></div></div>
+  <div class="rule"><span class="no">11.9</span><div><p>Wyrok IC ustala się według taryfikatora frakcji, ale realny czas odsiadki nie może przekroczyć <strong>40 minut</strong>.</p></div></div>
+  <div class="rule"><span class="no">11.10</span><div>
+    <p>Pościgi:</p>
+    <ul class="list">
+      <li>manewr PIT tylko na prostych odcinkach i nie przy dużych prędkościach w terenie zabudowanym,</li>
+      <li>zakaz taranowania motocykli (to VDM),</li>
+      <li>kolczatki są dozwolone, chyba że w negocjacjach ustalono inaczej,</li>
+      <li>strzelanie do opon dopiero wtedy, gdy z uciekającego auta padły strzały.</li>
+    </ul>
+  </div></div>
+  <div class="rule"><span class="no">11.11</span><div><p>Zakaz wchodzenia na służbę "na chwilę" tylko po to, żeby odblokować komuś napad (minimalna liczba Sheriff). Zakaz schodzenia ze służby w trakcie trwającej akcji tylko po to, żeby nie musieć reagować.</p></div></div>
+  <div class="rule"><span class="no">11.12</span><div><p>Funkcjonariusz nie może brać udziału w akcjach przestępczych (<a href="#p5-4">5.4</a>).</p></div></div>
+</section>
+
+<!-- ============ 12 ============ -->
+<section id="s12">
+  <header class="sec-head"><span class="sec-no">§ 12</span><h2>EMS</h2></header>
+  <div class="rule"><span class="no">12.1</span><div><p>EMS jest neutralny. Leczy wszystkich, nie bierze stron i nie przekazuje informacji ani Sheriff, ani organizacjom.</p></div></div>
+  <div class="rule"><span class="no">12.2</span><div><p>Zakaz atakowania, okradania, porywania i zabijania medyków na służbie. Dotyczy to też zmuszania ich bronią do leczenia kolegi w trakcie akcji. Wyjątek tylko za zgodą administracji (np. przy dłuższym wątku fabularnym).</p></div></div>
+  <div class="rule"><span class="no">12.3</span><div><p>EMS nie wjeżdża w trwającą strzelaninę. Czeka, aż teren będzie bezpieczny.</p></div></div>
+  <div class="rule"><span class="no">12.4</span><div><p>Medyk nie może brać udziału w akcjach przestępczych (<a href="#p5-4">5.4</a>).</p></div></div>
+  <div class="rule"><span class="no">12.5</span><div><p>Jeśli na służbie nie ma żadnego medyka, po upływie licznika BW możesz zrobić respawn.</p></div></div>
+</section>
+
+<!-- ============ 13 ============ -->
+<section id="s13">
+  <header class="sec-head"><span class="sec-no">§ 13</span><h2>Organizacje przestępcze i wojny</h2></header>
+  <div class="rule"><span class="no">13.1</span><div><p>Oficjalną organizację zakłada się przez wniosek na Discordzie. We wniosku podajesz: nazwę, historię, lidera, minimum 5 członków i pomysł na rozwój organizacji.</p></div></div>
+  <div class="rule"><span class="no">13.2</span><div><p>Organizacja może mieć maksymalnie <strong>15 członków</strong>. Na akcjach i tak obowiązują limity z <a href="#s8">punktu 8</a>.</p></div></div>
+  <div class="rule"><span class="no">13.3</span><div><p>Lider odpowiada za swoich ludzi. Kary za przekraczanie limitów mogą objąć całą organizację (np. blokada napadów).</p></div></div>
+  <div class="rule"><span class="no">13.4</span><div><p>Sojusze są dozwolone, ale nie możecie łączyć ludzi z kilku organizacji, żeby obejść limity. Limit liczy się na akcję, a nie na organizację.</p></div></div>
+  <div class="rule"><span class="no">13.5</span><div><p>Organizacja może mieć swój teren w Sandy Shores albo w Paleto Bay, ale nie może z tego powodu strzelać do każdego, kto tam wjedzie. Bez inicjacji to dalej RDM.</p></div></div>
+  <div class="rule"><span class="no">13.6</span><div><p>Kolory organizacji to sygnał IC, ale samo noszenie barw rywali nie jest powodem do strzału bez inicjacji.</p></div></div>
+  <div class="rule"><span class="no">13.7</span><div>
+    <p>Wojny między organizacjami:</p>
+    <ul class="list">
+      <li>tylko za zgodą administracji, po wniosku z powodem IC,</li>
+      <li>administracja ustala czas trwania (maksymalnie 7 dni), zasady i limit osób (domyślnie maksymalnie <strong>8 na 8</strong> w jednej strzelaninie),</li>
+      <li>w trakcie wojny nie atakujecie osób, które w niej nie biorą udziału,</li>
+      <li>żadnych strzelanin w strefach bezpiecznych,</li>
+      <li>po zakończeniu wojny żadna strona nie wraca do tematu przez minimum 7 dni, chyba że pojawi się zupełnie nowy powód IC.</li>
+    </ul>
+  </div></div>
+</section>
+
+<!-- ============ 14 ============ -->
+<section id="s14">
+  <header class="sec-head"><span class="sec-no">§ 14</span><h2>Pojazdy i pościgi</h2></header>
+  <div class="rule"><span class="no">14.1</span><div><p>Zasady jazdy są w punkcie <a href="#p3-12">3.12</a> (Fail Driving).</p></div></div>
+  <div class="rule"><span class="no">14.2</span><div><p>Auta sportowe i supersporty jeżdżą po asfalcie. W teren bierzesz terenówkę, SUV-a albo crossa.</p></div></div>
+  <div class="rule"><span class="no">14.3</span><div>
+    <p>Helikoptery i samoloty:</p>
+    <ul class="list">
+      <li>latasz tylko, jeśli twoja postać ma licencję IC,</li>
+      <li>nie lądujesz tam, gdzie realnie się nie da,</li>
+      <li>nie używasz śmigłowca jako broni (to VDM).</li>
+    </ul>
+  </div></div>
+  <div class="rule"><span class="no">14.4</span><div><p>Zakaz wyciągania auta z garażu i chowania go do garażu w trakcie pościgu. Auto nie może "zniknąć".</p></div></div>
+  <div class="rule"><span class="no">14.5</span><div><p>Zmiana auta w trakcie ucieczki jest dozwolona tylko wtedy, gdy zgubiliście pościg z oczu, a auto stało tam wcześniej przygotowane.</p></div></div>
+  <div class="rule"><span class="no">14.6</span><div><p>Zakaz chowania się w miejscach, do których realnie nie da się wjechać albo wejść.</p></div></div>
+  <div class="rule"><span class="no">14.7</span><div><p>Limity pojazdów w akcjach są w <a href="#s8">punkcie 8</a>.</p></div></div>
+  <div class="rule"><span class="no">14.8</span><div><p>Nie zostawiaj auta na środku drogi ani w poprzek wjazdu bez powodu RP. Inni też chcą przejechać.</p></div></div>
+  <div class="rule"><span class="no">14.9</span><div><p>Pościgi odbywają się tylko w obszarze gry (<a href="#p1-12">1.12</a>). Ucieczka do Los Santos albo w inne miejsce poza Sandy Shores, Paleto Bay i drogami między nimi nie jest zaliczana.</p></div></div>
+</section>
+
+<!-- ============ 15 ============ -->
+<section id="s15">
+  <header class="sec-head"><span class="sec-no">§ 15</span><h2>Discord, zachowanie OOC i sprawy techniczne</h2></header>
+  <div class="rule"><span class="no">15.1</span><div><p>Szanujemy innych graczy i administrację, zarówno na serwerze, jak i na Discordzie.</p></div></div>
+  <div class="rule"><span class="no">15.2</span><div><p>Zakazane są: rasizm, homofobia, seksizm, obrażanie rodzin, groźby OOC, doxxing (publikowanie czyichś prywatnych danych) oraz wrzucanie treści +18 i drastycznych.</p></div></div>
+  <div class="rule"><span class="no">15.3</span><div><p>Zakaz reklamowania innych serwerów, także na prywatnych wiadomościach do naszych graczy.</p></div></div>
+  <div class="rule"><span class="no">15.4</span><div><p>Cheaty, mod menu, ESP, aimbot, makra i zewnętrzne programy dające przewagę = ban permanentny bez możliwości odwołania.</p></div></div>
+  <div class="rule"><span class="no">15.5</span><div><p>Mody graficzne są okej, jeśli nie dają przewagi. Zakazane są m.in.: usuwanie trawy, krzaków i drzew, ustawienia, przez które w nocy jest jasno jak w dzień, oraz zewnętrzne celowniki nakładane na ekran.</p></div></div>
+  <div class="rule"><span class="no">15.6</span><div><p>Multikonta i omijanie bana (nowe konto, VPN) = ban permanentny.</p></div></div>
+  <div class="rule"><span class="no">15.7</span><div><p>Zakaz handlu kontem, kasą z gry, przedmiotami i autami za prawdziwe pieniądze.</p></div></div>
+  <div class="rule"><span class="no">15.8</span><div><p>Zakaz podszywania się pod administrację.</p></div></div>
+  <div class="rule"><span class="no">15.9</span><div><p>Próby ataków na serwer (DDoS), grzebanie w plikach serwera i łamanie zabezpieczeń = ban permanentny.</p></div></div>
+</section>
+
+<!-- ============ 16 ============ -->
+<section id="s16">
+  <header class="sec-head"><span class="sec-no">§ 16</span><h2>Streamerzy</h2></header>
+  <div class="rule"><span class="no">16.1</span><div><p>Streamowanie jest dozwolone. Nie wymagamy opóźnienia, ale polecamy ustawić 1-2 minuty.</p></div></div>
+  <div class="rule"><span class="no">16.2</span><div><p>Stream sniping, czyli oglądanie czyjegoś streama, żeby wiedzieć, gdzie jest i co robi, to MG i jest karany.</p></div></div>
+  <div class="rule"><span class="no">16.3</span><div><p>Streamer nie korzysta z informacji z czatu ("jadą za tobą", "za rogiem stoi trzech"). To też MG.</p></div></div>
+  <div class="rule"><span class="no">16.4</span><div><p>Zakaz pokazywania na streamie, jak wykorzystywać bugi.</p></div></div>
+</section>
+
+<!-- ============ 17 ============ -->
+<section id="s17">
+  <header class="sec-head"><span class="sec-no">§ 17</span><h2>Zgłoszenia i dowody</h2></header>
+  <div class="rule"><span class="no">17.1</span><div><p>Zgłoszenia robisz przez ticket na Discordzie.</p></div></div>
+  <div class="rule"><span class="no">17.2</span><div><p>Masz <strong>48 godzin</strong> od sytuacji na złożenie zgłoszenia.</p></div></div>
+  <div class="rule"><span class="no">17.3</span><div><p>Dowodem jest nagranie. Najlepiej, żeby obejmowało też 1-2 minuty przed sytuacją, żeby było widać kontekst. Polecamy mieć cały czas włączone nagrywanie powtórek (ShadowPlay, AMD ReLive, OBS Replay Buffer), wtedy zawsze masz ostatnie minuty. Zgłoszenie bez nagrania może zostać odrzucone.</p></div></div>
+  <div class="rule"><span class="no">17.4</span><div><p>Nagranie nie może być pocięte tak, żeby zmieniało kontekst.</p></div></div>
+  <div class="rule"><span class="no">17.5</span><div><p>Najpierw gra, potem ticket. Nie przerywasz akcji, żeby się kłócić (wyjątek w <a href="#p3-16">3.16</a>).</p></div></div>
+  <div class="rule"><span class="no">17.6</span><div><p>Fałszywe zgłoszenia i manipulowanie dowodami są karane.</p></div></div>
+  <div class="rule"><span class="no">17.7</span><div><p>Od kary możesz się odwołać raz, w ciągu 7 dni, przez ticket. Pisanie do adminów na prywatne wiadomości w sprawie kar ignorujemy.</p></div></div>
+</section>
+
+<!-- ============ 18 ============ -->
+<section id="s18">
+  <header class="sec-head"><span class="sec-no">§ 18</span><h2>Kary</h2></header>
+  <div class="rule"><span class="no">18.1</span><div>
+    <p>Rodzaje kar:</p>
+    <ul class="list">
+      <li>ostrzeżenie (warn),</li>
+      <li>kick,</li>
+      <li>ban czasowy,</li>
+      <li>ban permanentny,</li>
+      <li>blokada akcji przestępczych (dla gracza albo całej organizacji),</li>
+      <li>wipe postaci albo przedmiotów,</li>
+      <li>CK nałożone przez administrację.</li>
+    </ul>
+  </div></div>
+  <div class="rule"><span class="no">18.2</span><div><p>3 aktywne ostrzeżenia = automatyczny ban na 3 dni. Ostrzeżenie wygasa po 30 dniach.</p></div></div>
+  <div class="rule"><span class="no">18.3</span><div><p>Kary nakładane są na konto, czyli dotyczą wszystkich twoich postaci.</p></div></div>
+
+  <h3><span class="n">18.4</span>Taryfikator</h3>
+  <p>To taryfikator orientacyjny. Administracja może zaostrzyć albo złagodzić karę zależnie od sytuacji. Celowe łamanie zasad to co innego niż pomyłka nowego gracza.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Przewinienie</th><th scope="col">1. raz</th><th scope="col">2. raz</th><th scope="col">3. raz i kolejne</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>MG, PG, Fail Driving, Fail /me i /do, mieszanie IC z OOC, bunny hop</td><td>ostrzeżenie</td><td>ban 1 dzień</td><td>ban 3 dni</td></tr>
+        <tr><td>Fear RP, brak Value of Life, Fail Escape, Fail Weapon, ignorowanie obrażeń, Fail Character</td><td>ostrzeżenie</td><td>ban 1 dzień</td><td>ban 3 dni</td></tr>
+        <tr><td>Cop Bait, Troll RP, Third Party, griefing</td><td>ostrzeżenie</td><td>ban 2 dni</td><td>ban 5 dni</td></tr>
+        <tr><td>RDM, VDM</td><td>ban 1 dzień</td><td>ban 3 dni</td><td>ban 7 dni</td></tr>
+        <tr><td>NLR, Revenge Kill, Spawn Kill</td><td>ban 1 dzień</td><td>ban 3 dni</td><td>ban 7 dni</td></tr>
+        <tr><td>Akcja w strefie bezpiecznej</td><td>ban 1 dzień</td><td>ban 3 dni</td><td>ban 7 dni</td></tr>
+        <tr><td>Wyjazd poza obszar gry (Los Santos i reszta mapy)</td><td>ostrzeżenie</td><td>ban 1 dzień</td><td>ban 3 dni</td></tr>
+        <tr><td>Combat Logging</td><td>ban 2 dni</td><td>ban 5 dni</td><td>ban 14 dni</td></tr>
+        <tr><td>Przekroczenie limitów akcji (Crime albo Sheriff)</td><td>anulowanie akcji, zabranie łupu, ostrzeżenie dla każdego uczestnika</td><td>ban 2 dni dla każdego uczestnika</td><td>ban 5 dni + blokada akcji dla organizacji na 7 dni</td></tr>
+        <tr><td>Fake zakładnik</td><td>anulowanie akcji + ban 2 dni</td><td>ban 5 dni</td><td>ban 14 dni</td></tr>
+        <tr><td>Obchodzenie cooldownów albo minimalnej liczby Sheriff</td><td>anulowanie akcji + ban 2 dni</td><td>ban 5 dni</td><td>ban 14 dni</td></tr>
+        <tr><td>Atak na EMS na służbie, kradzież sprzętu służbowego</td><td>ban 2 dni</td><td>ban 5 dni</td><td>ban 14 dni</td></tr>
+        <tr><td>Przekazywanie rzeczy między swoimi postaciami</td><td>wipe przekazanych rzeczy + ban 3 dni</td><td>wipe postaci + ban 7 dni</td><td class="perm">ban permanentny</td></tr>
+        <tr><td>CK bez zgody administracji</td><td>ban 7 dni</td><td>ban 14 dni</td><td class="perm">ban permanentny</td></tr>
+        <tr><td>Abuse bugów</td><td>wipe + ban 7 dni</td><td>ban 30 dni</td><td class="perm">ban permanentny</td></tr>
+        <tr><td>Toksyczność i obrażanie OOC</td><td>ostrzeżenie albo ban do 3 dni</td><td>ban 7 dni</td><td class="perm">ban permanentny</td></tr>
+        <tr><td>Reklama innych serwerów</td><td>ban 7 dni</td><td class="perm">ban permanentny</td><td class="none">-</td></tr>
+        <tr><td>Rasizm, homofobia, groźby OOC, doxxing</td><td>ban od 7 dni do permanentnego</td><td class="perm">ban permanentny</td><td class="none">-</td></tr>
+        <tr><td>Temat wrażliwy bez zgody administracji (<a href="#p3-27">3.27</a>)</td><td>ban 7 dni</td><td>ban 14 dni</td><td class="perm">ban permanentny</td></tr>
+        <tr><td>Temat zakazany zawsze (<a href="#p3-27">3.27</a>)</td><td class="perm">ban permanentny</td><td class="none">-</td><td class="none">-</td></tr>
+        <tr><td>Cheaty, mod menu, makra</td><td class="perm">ban permanentny bez odwołania</td><td class="none">-</td><td class="none">-</td></tr>
+        <tr><td>Multikonto, omijanie bana, handel za prawdziwe pieniądze</td><td class="perm">ban permanentny</td><td class="none">-</td><td class="none">-</td></tr>
+        <tr><td>Fałszywe zgłoszenie</td><td>ostrzeżenie</td><td>ban 1 dzień</td><td>ban 3 dni</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 19 ============ -->
+<section id="s19">
+  <header class="sec-head"><span class="sec-no">§ 19</span><h2>Postanowienia końcowe</h2></header>
+  <div class="rule"><span class="no">19.1</span><div><p>W sprawach spornych ostatnie słowo należy do administracji.</p></div></div>
+  <div class="rule"><span class="no">19.2</span><div><p>Regulamin obowiązuje od 01.10.2026.</p></div></div>
+  <div class="rule"><span class="no">19.3</span><div><p>Masz pytanie albo coś jest niejasne? Zapytaj na tickecie. Lepiej zapytać przed akcją, niż tłumaczyć się po niej.</p></div></div>
+</section>
+
+<footer class="outro">
+  <p>Na koniec jedna rzecz. Po drugiej stronie zawsze siedzi człowiek, który tak samo jak ty chce się dobrze bawić. Grajcie fair, róbcie fajne akcje i do zobaczenia w Sandy i Paleto.</p>
+  <p class="sign">Administracja Vortex RP</p>
+  <p><a class="back" href="#top">Wróć na górę</a></p>
+</footer>
+
+</main>
+</div>
+</div>
+
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  var byId = {};
+  links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+
+  if ('IntersectionObserver' in window) {
+    var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+    var visible = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { visible[e.target.id] = e.isIntersecting; });
+      var current = null;
+      for (var i = 0; i < sections.length; i++) {
+        if (visible[sections[i].id]) { current = sections[i].id; break; }
+      }
+      if (!current) return;
+      links.forEach(function (a) { a.removeAttribute('aria-current'); });
+      if (byId[current]) byId[current].setAttribute('aria-current', 'true');
+    }, { rootMargin: '-10% 0px -70% 0px' });
+    sections.forEach(function (s) { io.observe(s); });
+  }
+
+  var mobile = document.querySelector('.toc-mobile');
+  if (mobile) {
+    mobile.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('a')) mobile.open = false;
+    });
+  }
+})();
+</script>
+</body>
+</html>
